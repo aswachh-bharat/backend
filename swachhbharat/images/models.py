@@ -1,3 +1,8 @@
-from django.db import models
+from django.contrib.gis.db import models
 
-# Create your models here.
+from swachhbharat.utils import TimeStampMixin
+
+
+class Image(TimeStampMixin):
+    file = models.ImageField(upload_to='images/%Y/%m/%d')
+    location = models.PointField(null=True)
