@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
 
+    'rest_framework',
+
     'swachhbharat',
     'swachhbharat.images',
 ]
@@ -122,3 +124,13 @@ STATIC_URL = '/static/'
 # Media files (user uploaded stuff)
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
+
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 20,
+    # Allow anyone to upload/get images. ALLOW THEM ALL!!!
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+}
