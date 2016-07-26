@@ -1,0 +1,4 @@
+Django==1.10rc1
+djangorestframework==3.4.0
+djangorestframework-gis==0.10.1
+Pillow==3.3.0
