@@ -93,9 +93,11 @@ ENV/
 
 # local DB
 db.sqlite3
+db.sqlite3.dev
 
 # Django Media Files
 media/covers
+swachhbharat/media/
 
 # settings and secrets
 .envrc
