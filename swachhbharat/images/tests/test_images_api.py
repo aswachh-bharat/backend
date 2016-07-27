@@ -8,14 +8,14 @@ import PIL.Image
 class ImageApiTest(APITestCase):
     fixtures = ['image_fixtures.json']
 
-    def test_get(self):
+    def test_list_action(self):
         response = self.client.get('/api/images/')
         assert response.status_code == status.HTTP_200_OK
-        
+
         # Inserted as part of the fixture
         assert 'foo.jpg' in response.json()['results'][0]['file']
 
-    def test_post(self):
+    def test_create_action(self):
         image = PIL.Image.new('RGB', (100, 100))
         temp_file = tempfile.NamedTemporaryFile(suffix='.jpg')
         image.save(temp_file, format='JPEG')
