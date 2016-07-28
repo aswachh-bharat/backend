@@ -1,0 +1,39 @@
+# Following is the config for nginx. Rename this file to 
+# `backend` and place it in `/etc/nginx/sites-available`
+# and make sure symlink is created in `/etc/nginx/sites-enabled`
+
+upstream django {
+    server unix:///tmp/uwsgi.sock;
+}
+
+# configuration of the server
+server {
+    # the port your site will be served on
+    listen      80;
+    # the domain name it will serve for
+    server_name 139.59.16.128; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    location /static {
+        autoindex on;
+        alias /home/ubuntu/backend/swachhbharat/static/;
+    }
+
+    location /docs {
+        autoindex on;
+        alias /home/ubuntu/backend/docs/build/;
+    }
+
+    location /media {
+        autoindex on;
+        alias /home/ubuntu/backend/swachhbharat/media/;
+    }
+
+    location / {
+        uwsgi_pass  django;
+        include     uwsgi_params; # the uwsgi_params file you installed
+    }
+}
