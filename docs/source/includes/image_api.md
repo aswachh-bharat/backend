@@ -14,6 +14,7 @@ curl -X GET "http://aswachhbharat.org/api/images/"
   "next": null,
   "previous": null,
   "results": [{
+    "id": 1,
     "file": "http://aswachhbharat.org/media/images/2016/07/28/image_45917.png",
     "location": {
       "type": "Point",
@@ -22,6 +23,7 @@ curl -X GET "http://aswachhbharat.org/api/images/"
       ]
     }
   }, {
+    "id": 2,
     "file": "http://aswachhbharat.org/media/images/2016/07/28/image_45tgf.png",
     "location": {
       "type": "Point",
@@ -31,6 +33,7 @@ curl -X GET "http://aswachhbharat.org/api/images/"
       ]
     }
   }, {
+    "id": 3,
     "file": "http://aswachhbharat.org/media/images/2016/07/28/image_5rdr5.png",
     "location": null
   }]
@@ -54,6 +57,7 @@ curl -X GET "http://aswachhbharat.org/api/images/1/"
 
 ```json
 {
+  "id": 1,
   "file": "http://aswachhbharat.org/media/images/2016/07/28/image_45917.png",
   "location": {
     "type": "Point",
@@ -86,6 +90,7 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "file=@[object Object]" -
 
 ```json
 {
+  "id": 1,
   "file": "http://aswachhbharat.org/media/images/2016/07/28/image_45917.png",
   "location": {
     "type": "Point",
