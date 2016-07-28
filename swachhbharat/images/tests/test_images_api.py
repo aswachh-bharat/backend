@@ -1,4 +1,6 @@
 import tempfile
+import json
+import random
 
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -21,6 +23,20 @@ class ImageApiTest(APITestCase):
         image_name = temp_file.name.split('/')[-1]
         image.save(temp_file.name)
         return image_name, temp_file
+
+    def create_geojson_point(self, coordinates=None):
+        """
+        Creates a GeoJSON representation of a point.
+        Generates a random point if coordinates is None.
+        :param coordinates: A list containing two coordinates.
+        :returns: A GeoJSON string.
+        """
+        if coordinates is None:
+            coordinates = [random.uniform(0, 100), random.uniform(0, 100)]
+        return json.dumps({
+            'type': 'Point',
+            'coordinates': coordinates
+        })
 
     def setUp(self):
         # Insert ten random images.
@@ -45,8 +61,10 @@ class ImageApiTest(APITestCase):
     def test_create_action(self):
         _, temp_file = self.create_image()
         with open(temp_file.name, 'rb') as data_file:
-            response = self.client.post('/api/images/', 
-                                        {'file': data_file}, 
+            response = self.client.post('/api/images/', {
+                                            'file': data_file,
+                                            'location': self.create_geojson_point()
+                                        }, 
                                         format='multipart')
             assert response.status_code == status.HTTP_201_CREATED
 
